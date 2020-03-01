@@ -96,11 +96,13 @@ class JTACMonthLayout: UICollectionViewLayout, JTACMonthLayoutProtocol {
         var width: CGFloat = collectionView!.bounds.size.width / CGFloat(maxNumberOfDaysInWeek)
         
         if shouldUseUserItemSizeInsteadOfDefault { // If delegate item size was set
-            if scrollDirection == .horizontal {
-                width = delegate.cellSize
-            } else {
-                height = delegate.cellSize
-            }
+//            if scrollDirection == .horizontal {
+//                width = delegate.cellSize
+//            } else {
+//                height = delegate.cellSize
+//            }
+            width = delegate.cellSize
+            height = delegate.cellSize
         }
         
         return CGSize(width: width, height: height)
@@ -441,10 +443,11 @@ class JTACMonthLayout: UICollectionViewLayout, JTACMonthLayoutProtocol {
                 size.height = cellSize.height
             } else {
                 size.width = cellSize.width
-                let headerHeight =  strictBoundaryRulesShouldApply ? cachedHeaderHeightForSection(section) : 0
-                let currentMonth = monthInfo[monthMap[section]!]
-                let recalculatedNumOfRows = allowsDateCellStretching ? CGFloat(currentMonth.maxNumberOfRowsForFull(developerSetRows: numberOfRows)) : CGFloat(maxNumberOfRowsPerMonth)
-                size.height = (collectionView!.frame.height - headerHeight - sectionInset.top - sectionInset.bottom) / recalculatedNumOfRows
+                size.height = cellSize.height
+//                let headerHeight =  strictBoundaryRulesShouldApply ? cachedHeaderHeightForSection(section) : 0
+//                let currentMonth = monthInfo[monthMap[section]!]
+//                let recalculatedNumOfRows = allowsDateCellStretching ? CGFloat(currentMonth.maxNumberOfRowsForFull(developerSetRows: numberOfRows)) : CGFloat(maxNumberOfRowsPerMonth)
+//                size.height = (collectionView!.frame.height - headerHeight - sectionInset.top - sectionInset.bottom) / recalculatedNumOfRows
                 currentCell = (section: section, width: size.width, height: size.height)
             }
         } else {
